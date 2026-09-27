@@ -1,17 +1,24 @@
-# Proyecto KDD — Pandas, SQL, Pentaho y Power BI
+# Proyecto KDD: Pandas, SQL, Pentaho y Power BI
 
 Autor: Manuel Mora Matías.
 
-## Documento
+## Descarga de la entrega completa
 
-[Descargar el informe Word](Informe_Proyecto_KDD.docx)
+El paquete original pesa 220.795.911 bytes. Está dividido en 23 partes para su publicación en GitHub, en la carpeta [entrega](entrega). Las partes deben descargarse juntas.
 
-El informe documenta el pipeline Bronze/Silver/Gold, análisis exploratorio, minería de datos y preparación de Power BI.
+**Windows:**
 
-## Estado de publicación
+1. Pulsa **Code → Download ZIP** en este repositorio y extrae el archivo descargado.
+2. Abre PowerShell en la carpeta extraída.
+3. Ejecuta `powershell -ExecutionPolicy Bypass -File .\reconstruir_zip.ps1`.
+4. El script crea `ProyectoKDD_Entrega.zip` en esa misma carpeta y verifica su SHA-256.
 
-El documento Word está disponible en este repositorio. El paquete completo `ProyectoKDD_Entrega.zip` (220.795.911 bytes) está pendiente de publicación: no está incluido en este repositorio.
+SHA-256 del ZIP: `d0895f9f1af4e76851e9edec5d1def33572105bbd2218b1d381521dd96a621e2`.
 
-## Estado técnico
+[Informe Word](Informe_Proyecto_KDD.docx).
 
-Python y SQLite ejecutados. Los archivos de Pentaho y Power BI están preparados; quedan pendientes la ejecución nativa en Pentaho, el scheduler, las capturas nativas y la generación del PBIX desde Power BI Desktop.
+## Contenido y alcance
+
+La entrega incluye los datos originales, base SQLite, scripts de Pandas y SQL, notebook, archivos de Pentaho, proyecto de Power BI y evidencias. Python y SQLite se ejecutaron. Los archivos de Pentaho y Power BI están preparados, pero aún requieren ejecución y capturas nativas; el PBIX debe generarse desde Power BI Desktop.
+
+La fuente original de la segunda parte proviene de la hoja proporcionada para el curso. El repositorio es público; revisa los datos antes de compartir el enlace fuera de la asignatura.
