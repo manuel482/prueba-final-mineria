@@ -1,0 +1,9 @@
+{
+  "xml_pentaho": "bien formado",
+  "json_powerbi": 32,
+  "referencias_visuales": "tablas columnas y medidas existentes",
+  "integridad_sqlite": "ok",
+  "codigos_geograficos": "ceros preservados",
+  "ejecucion_pentaho": "pendiente",
+  "apertura_powerbi_y_pbix": "pendiente"
+}

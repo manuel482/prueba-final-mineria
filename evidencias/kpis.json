@@ -1,0 +1,16 @@
+{
+  "retail": {
+    "venta_neta_gbp": 9748131.074000001,
+    "venta_bruta_gbp": 10642110.804000001,
+    "devoluciones_gbp": 893979.73,
+    "facturas": 25898,
+    "clientes_identificados": 4372
+  },
+  "productos": {
+    "venta": 5461711163.713502,
+    "costos": 3341779692.751918,
+    "utilidad": 2119931470.961584,
+    "productos": 60,
+    "moneda": "no especificada en el documento"
+  }
+}

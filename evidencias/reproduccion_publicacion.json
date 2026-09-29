@@ -1,0 +1,37 @@
+{
+  "fecha_utc": "2026-09-28",
+  "base": "ProyectoKDD_Entrega.zip, versión 2",
+  "zip_sha256": "b8273fb8aad23bab26e25b5ca79c3f0834e892640ae0eec4db06257220241124",
+  "prueba": "Descarga fuente sin CSV originales ni SQLite; pipeline --stage all completo",
+  "resultado": "OK",
+  "comparacion_con_zip_original": {
+    "retail_original.csv": true,
+    "productos_original.csv": true,
+    "verificacion.json": true,
+    "metricas.json": true,
+    "kpis.json": true
+  },
+  "tolerancia_numerica": {
+    "relativa": 1e-09,
+    "absoluta": 1e-08
+  },
+  "verificador": {
+    "controles": 65,
+    "errores": 0
+  },
+  "entorno": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "pandas": "2.2.3",
+    "numpy": "2.3.5",
+    "sklearn": "1.8.0",
+    "plataforma": "Linux-6.18.44-x86_64-with-glibc2.39"
+  },
+  "pentaho": "XML validado; ejecución nativa pendiente",
+  "power_bi": "JSON validado; Desktop y PBIX pendientes",
+  "instalacion_windows": "Guía revisada; no ejecutada en Windows",
+  "distribucion": {
+    "archivos_binarios_restaurados": 16,
+    "comparacion_con_ultima_version_zip": "SHA-256 idéntico en los 16 archivos",
+    "prueba_carpeta_vacia": "OK"
+  }
+}

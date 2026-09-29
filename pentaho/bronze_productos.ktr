@@ -1,0 +1,363 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<transformation>
+  <info>
+    <name>Carga_Bronze_productos</name>
+    <description>CSV a SQL sin limpieza. Validación previa en preparar_bronze.py.</description>
+    <trans_version>1</trans_version>
+    <trans_type>Normal</trans_type>
+    <parameters>
+      <parameter>
+        <name>PROJECT_DIR</name>
+        <default_value>C:/ProyectoKDD</default_value>
+        <description>Carpeta raíz absoluta</description>
+      </parameter>
+    </parameters>
+  </info>
+  <connection>
+    <name>SQLite_Proyecto</name>
+    <server />
+    <type>SQLITE</type>
+    <access>Native</access>
+    <database>${PROJECT_DIR}/data/proyecto_kdd.sqlite</database>
+    <port>-1</port>
+    <username />
+    <password />
+    <servername />
+    <data_tablespace />
+    <index_tablespace />
+  </connection>
+  <order>
+    <hop>
+      <from>CSV original</from>
+      <to>SQL Bronze</to>
+      <enabled>Y</enabled>
+    </hop>
+  </order>
+  <step>
+    <name>CSV original</name>
+    <type>CsvInput</type>
+    <description>Todos los campos como texto para preservar valores originales</description>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+    <filename>${PROJECT_DIR}/data/productos_original.csv</filename>
+    <filename_field />
+    <rownum_field />
+    <include_filename>N</include_filename>
+    <separator>,</separator>
+    <enclosure>"</enclosure>
+    <header>Y</header>
+    <buffer_size>50000</buffer_size>
+    <lazy_conversion>N</lazy_conversion>
+    <add_filename_result>N</add_filename_result>
+    <parallel>N</parallel>
+    <newline_possible>Y</newline_possible>
+    <encoding>UTF-8</encoding>
+    <fields>
+      <field>
+        <name>Fecha Venta</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Nit</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Nombre Cliente</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Tipo Cliente</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Sucursal</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Cod_Depto</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Cod_Municipio</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Cod_Vendedor</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Cod_Categoria</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Nombre Categoría</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Cod_Linea</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Nombre Linea</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Cod_Producto</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Cantidad</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Precio Unit</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Costo Unit</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Venta</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Costos</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+    <GUI>
+      <xloc>160</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SQL Bronze</name>
+    <type>TableOutput</type>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+    <connection>SQLite_Proyecto</connection>
+    <schema />
+    <table>bronze_productos</table>
+    <commit>10000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field />
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field />
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field />
+    <fields>
+      <field>
+        <column_name>Fecha Venta</column_name>
+        <stream_name>Fecha Venta</stream_name>
+      </field>
+      <field>
+        <column_name>Nit</column_name>
+        <stream_name>Nit</stream_name>
+      </field>
+      <field>
+        <column_name>Nombre Cliente</column_name>
+        <stream_name>Nombre Cliente</stream_name>
+      </field>
+      <field>
+        <column_name>Tipo Cliente</column_name>
+        <stream_name>Tipo Cliente</stream_name>
+      </field>
+      <field>
+        <column_name>Sucursal</column_name>
+        <stream_name>Sucursal</stream_name>
+      </field>
+      <field>
+        <column_name>Cod_Depto</column_name>
+        <stream_name>Cod_Depto</stream_name>
+      </field>
+      <field>
+        <column_name>Cod_Municipio</column_name>
+        <stream_name>Cod_Municipio</stream_name>
+      </field>
+      <field>
+        <column_name>Cod_Vendedor</column_name>
+        <stream_name>Cod_Vendedor</stream_name>
+      </field>
+      <field>
+        <column_name>Cod_Categoria</column_name>
+        <stream_name>Cod_Categoria</stream_name>
+      </field>
+      <field>
+        <column_name>Nombre Categoría</column_name>
+        <stream_name>Nombre Categoría</stream_name>
+      </field>
+      <field>
+        <column_name>Cod_Linea</column_name>
+        <stream_name>Cod_Linea</stream_name>
+      </field>
+      <field>
+        <column_name>Nombre Linea</column_name>
+        <stream_name>Nombre Linea</stream_name>
+      </field>
+      <field>
+        <column_name>Cod_Producto</column_name>
+        <stream_name>Cod_Producto</stream_name>
+      </field>
+      <field>
+        <column_name>Cantidad</column_name>
+        <stream_name>Cantidad</stream_name>
+      </field>
+      <field>
+        <column_name>Precio Unit</column_name>
+        <stream_name>Precio Unit</stream_name>
+      </field>
+      <field>
+        <column_name>Costo Unit</column_name>
+        <stream_name>Costo Unit</stream_name>
+      </field>
+      <field>
+        <column_name>Venta</column_name>
+        <stream_name>Venta</stream_name>
+      </field>
+      <field>
+        <column_name>Costos</column_name>
+        <stream_name>Costos</stream_name>
+      </field>
+    </fields>
+    <GUI>
+      <xloc>480</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+</transformation>

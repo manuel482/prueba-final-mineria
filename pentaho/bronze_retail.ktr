@@ -1,0 +1,213 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<transformation>
+  <info>
+    <name>Carga_Bronze_retail</name>
+    <description>CSV a SQL sin limpieza. Validación previa en preparar_bronze.py.</description>
+    <trans_version>1</trans_version>
+    <trans_type>Normal</trans_type>
+    <parameters>
+      <parameter>
+        <name>PROJECT_DIR</name>
+        <default_value>C:/ProyectoKDD</default_value>
+        <description>Carpeta raíz absoluta</description>
+      </parameter>
+    </parameters>
+  </info>
+  <connection>
+    <name>SQLite_Proyecto</name>
+    <server />
+    <type>SQLITE</type>
+    <access>Native</access>
+    <database>${PROJECT_DIR}/data/proyecto_kdd.sqlite</database>
+    <port>-1</port>
+    <username />
+    <password />
+    <servername />
+    <data_tablespace />
+    <index_tablespace />
+  </connection>
+  <order>
+    <hop>
+      <from>CSV original</from>
+      <to>SQL Bronze</to>
+      <enabled>Y</enabled>
+    </hop>
+  </order>
+  <step>
+    <name>CSV original</name>
+    <type>CsvInput</type>
+    <description>Todos los campos como texto para preservar valores originales</description>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+    <filename>${PROJECT_DIR}/data/retail_original.csv</filename>
+    <filename_field />
+    <rownum_field />
+    <include_filename>N</include_filename>
+    <separator>,</separator>
+    <enclosure>"</enclosure>
+    <header>Y</header>
+    <buffer_size>50000</buffer_size>
+    <lazy_conversion>N</lazy_conversion>
+    <add_filename_result>N</add_filename_result>
+    <parallel>N</parallel>
+    <newline_possible>Y</newline_possible>
+    <encoding>UTF-8</encoding>
+    <fields>
+      <field>
+        <name>InvoiceNo</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>StockCode</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Description</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Quantity</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>InvoiceDate</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>UnitPrice</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>CustomerID</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Country</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+    <GUI>
+      <xloc>160</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SQL Bronze</name>
+    <type>TableOutput</type>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+    <connection>SQLite_Proyecto</connection>
+    <schema />
+    <table>bronze_retail</table>
+    <commit>10000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field />
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field />
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field />
+    <fields>
+      <field>
+        <column_name>InvoiceNo</column_name>
+        <stream_name>InvoiceNo</stream_name>
+      </field>
+      <field>
+        <column_name>StockCode</column_name>
+        <stream_name>StockCode</stream_name>
+      </field>
+      <field>
+        <column_name>Description</column_name>
+        <stream_name>Description</stream_name>
+      </field>
+      <field>
+        <column_name>Quantity</column_name>
+        <stream_name>Quantity</stream_name>
+      </field>
+      <field>
+        <column_name>InvoiceDate</column_name>
+        <stream_name>InvoiceDate</stream_name>
+      </field>
+      <field>
+        <column_name>UnitPrice</column_name>
+        <stream_name>UnitPrice</stream_name>
+      </field>
+      <field>
+        <column_name>CustomerID</column_name>
+        <stream_name>CustomerID</stream_name>
+      </field>
+      <field>
+        <column_name>Country</column_name>
+        <stream_name>Country</stream_name>
+      </field>
+    </fields>
+    <GUI>
+      <xloc>480</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+</transformation>

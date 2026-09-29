@@ -1,0 +1,633 @@
+{
+  "name": "ProyectoKDD",
+  "compatibilityLevel": 1600,
+  "model": {
+    "culture": "es-ES",
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "tables": [
+      {
+        "name": "Retail",
+        "columns": [
+          {
+            "name": "fecha",
+            "dataType": "dateTime",
+            "sourceColumn": "fecha",
+            "summarizeBy": "none",
+            "formatString": "yyyy-MM-dd"
+          },
+          {
+            "name": "InvoiceNo",
+            "dataType": "string",
+            "sourceColumn": "InvoiceNo",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "stock_key",
+            "dataType": "string",
+            "sourceColumn": "stock_key",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "pais",
+            "dataType": "string",
+            "sourceColumn": "pais",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "customer_key",
+            "dataType": "string",
+            "sourceColumn": "customer_key",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "importe",
+            "dataType": "double",
+            "sourceColumn": "importe",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "venta_bruta",
+            "dataType": "double",
+            "sourceColumn": "venta_bruta",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "devolucion",
+            "dataType": "double",
+            "sourceColumn": "devolucion",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Quantity",
+            "dataType": "double",
+            "sourceColumn": "Quantity",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "UnitPrice",
+            "dataType": "double",
+            "sourceColumn": "UnitPrice",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "is_return",
+            "dataType": "int64",
+            "sourceColumn": "is_return",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "tramo_cantidad",
+            "dataType": "string",
+            "sourceColumn": "tramo_cantidad",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Retail",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Odbc.Query(\"dsn=ProyectoKDD\", \"SELECT \"\"fecha\"\", \"\"InvoiceNo\"\", \"\"stock_key\"\", \"\"pais\"\", \"\"customer_key\"\", \"\"importe\"\", \"\"venta_bruta\"\", \"\"devolucion\"\", \"\"Quantity\"\", \"\"UnitPrice\"\", \"\"is_return\"\", \"\"tramo_cantidad\"\" FROM gold_retail\"),",
+                "    Typed = Table.TransformColumnTypes(Source, {{\"fecha\",type date}, {\"InvoiceNo\",type text}, {\"stock_key\",type text}, {\"pais\",type text}, {\"customer_key\",type text}, {\"importe\",type number}, {\"venta_bruta\",type number}, {\"devolucion\",type number}, {\"Quantity\",type number}, {\"UnitPrice\",type number}, {\"is_return\",Int64.Type}, {\"tramo_cantidad\",type text}})",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Venta Neta GBP",
+            "expression": "SUM(Retail[importe])",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "Venta Bruta GBP",
+            "expression": "SUM(Retail[venta_bruta])",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "Devoluciones GBP",
+            "expression": "SUM(Retail[devolucion])",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "Tasa Devoluciones",
+            "expression": "DIVIDE([Devoluciones GBP], [Venta Bruta GBP])",
+            "formatString": "0.0%"
+          },
+          {
+            "name": "Facturas",
+            "expression": "DISTINCTCOUNT(Retail[InvoiceNo])",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "Clientes Identificados",
+            "expression": "CALCULATE(DISTINCTCOUNT(Retail[customer_key]), Retail[customer_key] <> \"DESCONOCIDO\")",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "Venta Mes Anterior GBP",
+            "expression": "CALCULATE([Venta Neta GBP], DATEADD(Fecha[fecha], -1, MONTH))",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "Crecimiento Mensual GBP",
+            "expression": "DIVIDE([Venta Neta GBP]-[Venta Mes Anterior GBP], [Venta Mes Anterior GBP])",
+            "formatString": "0.0%"
+          },
+          {
+            "name": "Acumulado GBP",
+            "expression": "TOTALYTD([Venta Neta GBP], Fecha[fecha])",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "Lineas",
+            "expression": "COUNTROWS(Retail)",
+            "formatString": "#,0"
+          }
+        ]
+      },
+      {
+        "name": "Ventas",
+        "columns": [
+          {
+            "name": "fecha",
+            "dataType": "dateTime",
+            "sourceColumn": "fecha",
+            "summarizeBy": "none",
+            "formatString": "yyyy-MM-dd"
+          },
+          {
+            "name": "producto_key",
+            "dataType": "string",
+            "sourceColumn": "producto_key",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "sucursal",
+            "dataType": "string",
+            "sourceColumn": "sucursal",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "tipo_cliente",
+            "dataType": "string",
+            "sourceColumn": "tipo_cliente",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "cantidad",
+            "dataType": "double",
+            "sourceColumn": "cantidad",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "precio_unit",
+            "dataType": "double",
+            "sourceColumn": "precio_unit",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "venta",
+            "dataType": "double",
+            "sourceColumn": "venta",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "costos",
+            "dataType": "double",
+            "sourceColumn": "costos",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "utilidad",
+            "dataType": "double",
+            "sourceColumn": "utilidad",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "cod_depto",
+            "dataType": "string",
+            "sourceColumn": "cod_depto",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "cod_municipio",
+            "dataType": "string",
+            "sourceColumn": "cod_municipio",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Ventas",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Odbc.Query(\"dsn=ProyectoKDD\", \"SELECT \"\"fecha\"\", \"\"producto_key\"\", \"\"sucursal\"\", \"\"tipo_cliente\"\", \"\"cantidad\"\", \"\"precio_unit\"\", \"\"venta\"\", \"\"costos\"\", \"\"utilidad\"\", \"\"cod_depto\"\", \"\"cod_municipio\"\" FROM gold_ventas_productos\"),",
+                "    Typed = Table.TransformColumnTypes(Source, {{\"fecha\",type date}, {\"producto_key\",type text}, {\"sucursal\",type text}, {\"tipo_cliente\",type text}, {\"cantidad\",type number}, {\"precio_unit\",type number}, {\"venta\",type number}, {\"costos\",type number}, {\"utilidad\",type number}, {\"cod_depto\",type text}, {\"cod_municipio\",type text}})",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Ventas Productos",
+            "expression": "SUM(Ventas[venta])",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "Costos Productos",
+            "expression": "SUM(Ventas[costos])",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "Utilidad Productos",
+            "expression": "[Ventas Productos]-[Costos Productos]",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "Margen Productos",
+            "expression": "DIVIDE([Utilidad Productos], [Ventas Productos])",
+            "formatString": "0.0%"
+          },
+          {
+            "name": "Unidades Productos",
+            "expression": "SUM(Ventas[cantidad])",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "Precio Medio Ponderado",
+            "expression": "DIVIDE([Ventas Productos], [Unidades Productos])",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "Ventas Mes Anterior",
+            "expression": "CALCULATE([Ventas Productos], DATEADD(Fecha[fecha], -1, MONTH))",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "Crecimiento Mensual Productos",
+            "expression": "DIVIDE([Ventas Productos]-[Ventas Mes Anterior], [Ventas Mes Anterior])",
+            "formatString": "0.0%"
+          },
+          {
+            "name": "Acumulado Productos",
+            "expression": "TOTALYTD([Ventas Productos], Fecha[fecha])",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "Ventas Lactea",
+            "expression": "CALCULATE([Ventas Productos], KEEPFILTERS(Productos[categoria] = \"LACTEA\"))",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "Ventas Categorias Seleccionadas",
+            "expression": "CALCULATE([Ventas Productos], KEEPFILTERS(Productos[categoria] IN {\"LACTEA\", \"CARNICA\"}))",
+            "formatString": "#,0.00"
+          }
+        ]
+      },
+      {
+        "name": "Productos",
+        "columns": [
+          {
+            "name": "producto_key",
+            "dataType": "string",
+            "sourceColumn": "producto_key",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "cod_producto",
+            "dataType": "string",
+            "sourceColumn": "cod_producto",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "categoria",
+            "dataType": "string",
+            "sourceColumn": "categoria",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "linea",
+            "dataType": "string",
+            "sourceColumn": "linea",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "nombre_producto",
+            "dataType": "string",
+            "sourceColumn": "nombre_producto",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "stock",
+            "dataType": "double",
+            "sourceColumn": "stock",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "precio_ultimo_observado",
+            "dataType": "double",
+            "sourceColumn": "precio_ultimo_observado",
+            "summarizeBy": "sum"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Productos",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Odbc.Query(\"dsn=ProyectoKDD\", \"SELECT \"\"producto_key\"\", \"\"cod_producto\"\", \"\"categoria\"\", \"\"linea\"\", \"\"nombre_producto\"\", \"\"stock\"\", \"\"precio_ultimo_observado\"\" FROM dim_productos\"),",
+                "    Typed = Table.TransformColumnTypes(Source, {{\"producto_key\",type text}, {\"cod_producto\",type text}, {\"categoria\",type text}, {\"linea\",type text}, {\"nombre_producto\",type text}, {\"stock\",type number}, {\"precio_ultimo_observado\",type number}})",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "ProductosRetail",
+        "columns": [
+          {
+            "name": "stock_key",
+            "dataType": "string",
+            "sourceColumn": "stock_key",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "producto",
+            "dataType": "string",
+            "sourceColumn": "producto",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "ProductosRetail",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Odbc.Query(\"dsn=ProyectoKDD\", \"SELECT \"\"stock_key\"\", \"\"producto\"\" FROM dim_retail_producto\"),",
+                "    Typed = Table.TransformColumnTypes(Source, {{\"stock_key\",type text}, {\"producto\",type text}})",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Pais",
+        "columns": [
+          {
+            "name": "pais",
+            "dataType": "string",
+            "sourceColumn": "pais",
+            "summarizeBy": "none",
+            "dataCategory": "Country"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Pais",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Odbc.Query(\"dsn=ProyectoKDD\", \"SELECT \"\"pais\"\" FROM dim_pais\"),",
+                "    Typed = Table.TransformColumnTypes(Source, {{\"pais\",type text}})",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Fecha",
+        "columns": [
+          {
+            "name": "fecha",
+            "dataType": "dateTime",
+            "sourceColumn": "fecha",
+            "summarizeBy": "none",
+            "formatString": "yyyy-MM-dd",
+            "isKey": true
+          },
+          {
+            "name": "ano",
+            "dataType": "int64",
+            "sourceColumn": "ano",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "trimestre",
+            "dataType": "int64",
+            "sourceColumn": "trimestre",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "mes",
+            "dataType": "int64",
+            "sourceColumn": "mes",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "dia",
+            "dataType": "int64",
+            "sourceColumn": "dia",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ano_mes",
+            "dataType": "string",
+            "sourceColumn": "ano_mes",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Fecha",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Odbc.Query(\"dsn=ProyectoKDD\", \"SELECT \"\"fecha\"\", \"\"ano\"\", \"\"trimestre\"\", \"\"mes\"\", \"\"dia\"\", \"\"ano_mes\"\" FROM dim_fecha\"),",
+                "    Typed = Table.TransformColumnTypes(Source, {{\"fecha\",type date}, {\"ano\",Int64.Type}, {\"trimestre\",Int64.Type}, {\"mes\",Int64.Type}, {\"dia\",Int64.Type}, {\"ano_mes\",type text}})",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ],
+        "dataCategory": "Time",
+        "hierarchies": [
+          {
+            "name": "Calendario",
+            "levels": [
+              {
+                "name": "Año",
+                "ordinal": 0,
+                "column": "ano"
+              },
+              {
+                "name": "Trimestre",
+                "ordinal": 1,
+                "column": "trimestre"
+              },
+              {
+                "name": "Mes",
+                "ordinal": 2,
+                "column": "mes"
+              },
+              {
+                "name": "Día",
+                "ordinal": 3,
+                "column": "dia"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Segmentos",
+        "columns": [
+          {
+            "name": "CustomerID",
+            "dataType": "string",
+            "sourceColumn": "CustomerID",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "recencia",
+            "dataType": "double",
+            "sourceColumn": "recencia",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "frecuencia",
+            "dataType": "int64",
+            "sourceColumn": "frecuencia",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "monetario",
+            "dataType": "double",
+            "sourceColumn": "monetario",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "cluster",
+            "dataType": "int64",
+            "sourceColumn": "cluster",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Segmentos",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Odbc.Query(\"dsn=ProyectoKDD\", \"SELECT \"\"CustomerID\"\", \"\"recencia\"\", \"\"frecuencia\"\", \"\"monetario\"\", \"\"cluster\"\" FROM gold_segmentos\"),",
+                "    Typed = Table.TransformColumnTypes(Source, {{\"CustomerID\",type text}, {\"recencia\",type number}, {\"frecuencia\",Int64.Type}, {\"monetario\",type number}, {\"cluster\",Int64.Type}})",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Clientes Segmento",
+            "expression": "COUNTROWS(Segmentos)",
+            "formatString": "#,0"
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "6e062bf5-3ecd-5736-bb0b-ea9dca3b32f5",
+        "fromTable": "Retail",
+        "fromColumn": "fecha",
+        "toTable": "Fecha",
+        "toColumn": "fecha",
+        "crossFilteringBehavior": "oneDirection",
+        "fromCardinality": "many",
+        "toCardinality": "one",
+        "isActive": true
+      },
+      {
+        "name": "fdc9db89-c538-55f8-96e0-6d927f426c5c",
+        "fromTable": "Retail",
+        "fromColumn": "stock_key",
+        "toTable": "ProductosRetail",
+        "toColumn": "stock_key",
+        "crossFilteringBehavior": "oneDirection",
+        "fromCardinality": "many",
+        "toCardinality": "one",
+        "isActive": true
+      },
+      {
+        "name": "a65ba519-e80e-51db-857c-c0a85506a951",
+        "fromTable": "Retail",
+        "fromColumn": "pais",
+        "toTable": "Pais",
+        "toColumn": "pais",
+        "crossFilteringBehavior": "oneDirection",
+        "fromCardinality": "many",
+        "toCardinality": "one",
+        "isActive": true
+      },
+      {
+        "name": "53ea6921-d475-5d37-bd6a-16355d9ea26d",
+        "fromTable": "Ventas",
+        "fromColumn": "fecha",
+        "toTable": "Fecha",
+        "toColumn": "fecha",
+        "crossFilteringBehavior": "oneDirection",
+        "fromCardinality": "many",
+        "toCardinality": "one",
+        "isActive": true
+      },
+      {
+        "name": "2d64cb6e-afa9-5a77-b39d-2d21d2ba51d4",
+        "fromTable": "Ventas",
+        "fromColumn": "producto_key",
+        "toTable": "Productos",
+        "toColumn": "producto_key",
+        "crossFilteringBehavior": "oneDirection",
+        "fromCardinality": "many",
+        "toCardinality": "one",
+        "isActive": true
+      }
+    ],
+    "annotations": [
+      {
+        "name": "PBI_QueryOrder",
+        "value": "[\"Retail\", \"Ventas\", \"Productos\", \"ProductosRetail\", \"Pais\", \"Fecha\", \"Segmentos\"]"
+      }
+    ]
+  }
+}

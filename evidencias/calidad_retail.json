@@ -1,0 +1,24 @@
+{
+  "filas": 541909,
+  "columnas": 8,
+  "nulos": {
+    "InvoiceNo": 0,
+    "StockCode": 0,
+    "Description": 1454,
+    "Quantity": 0,
+    "InvoiceDate": 0,
+    "UnitPrice": 0,
+    "CustomerID": 135080,
+    "Country": 0
+  },
+  "duplicados_exactos": 5268,
+  "silver_filas": 536639,
+  "rechazos": 5270,
+  "outliers_marcados": 67739,
+  "limite_iqr_cantidad_abs": 26.0,
+  "limite_iqr_precio": 8.45,
+  "precio_cero": 2510,
+  "devoluciones": 10587,
+  "inicio": "2010-12-01 08:26:00",
+  "fin": "2011-12-09 12:50:00"
+}

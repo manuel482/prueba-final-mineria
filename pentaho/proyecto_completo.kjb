@@ -1,0 +1,417 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<job>
+  <name>ProyectoKDD_Completo</name>
+  <description>Extracción, carga Bronze nativa, Pandas, SQL y notificación local</description>
+  <parameters>
+    <parameter>
+      <name>PROJECT_DIR</name>
+      <default_value>C:/ProyectoKDD</default_value>
+      <description>Ajustar a instalación local</description>
+    </parameter>
+    <parameter>
+      <name>PYTHON_EXE</name>
+      <default_value>C:/ProyectoKDD/.venv/Scripts/python.exe</default_value>
+      <description>Ajustar a instalación local</description>
+    </parameter>
+  </parameters>
+  <entries>
+    <entry>
+      <name>START</name>
+      <description />
+      <type>SPECIAL</type>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>100</xloc>
+      <yloc>100</yloc>
+      <start>Y</start>
+      <dummy>N</dummy>
+      <repeat>N</repeat>
+      <schedulerType>0</schedulerType>
+      <intervalSeconds>0</intervalSeconds>
+      <intervalMinutes>60</intervalMinutes>
+      <hour>12</hour>
+      <minutes>0</minutes>
+      <weekDay>1</weekDay>
+      <DayOfMonth>1</DayOfMonth>
+    </entry>
+    <entry>
+      <name>Extraer Excel</name>
+      <description />
+      <type>SHELL</type>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>320</xloc>
+      <yloc>100</yloc>
+      <filename>${PYTHON_EXE}</filename>
+      <work_directory>${PROJECT_DIR}</work_directory>
+      <arg_from_previous>N</arg_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <set_logfile>N</set_logfile>
+      <loglevel>Basic</loglevel>
+      <insertScript>N</insertScript>
+      <logfile />
+      <logext>log</logext>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <script />
+      <wait_until_finished>Y</wait_until_finished>
+      <arguments>
+        <argument>${PROJECT_DIR}/src/pipeline.py</argument>
+        <argument>--stage</argument>
+        <argument>extract</argument>
+      </arguments>
+    </entry>
+    <entry>
+      <name>Validar y preparar</name>
+      <description />
+      <type>SHELL</type>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>540</xloc>
+      <yloc>100</yloc>
+      <filename>${PYTHON_EXE}</filename>
+      <work_directory>${PROJECT_DIR}</work_directory>
+      <arg_from_previous>N</arg_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <set_logfile>N</set_logfile>
+      <loglevel>Basic</loglevel>
+      <insertScript>N</insertScript>
+      <logfile />
+      <logext>log</logext>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <script />
+      <wait_until_finished>Y</wait_until_finished>
+      <arguments>
+        <argument>${PROJECT_DIR}/src/preparar_bronze.py</argument>
+      </arguments>
+    </entry>
+    <entry>
+      <name>Bronze Retail</name>
+      <description />
+      <type>TRANS</type>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>760</xloc>
+      <yloc>100</yloc>
+      <specification_method>filename</specification_method>
+      <filename>${PROJECT_DIR}/pentaho/bronze_retail.ktr</filename>
+      <transname />
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <loglevel>Basic</loglevel>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <remote_slave_server />
+      <create_parent_folder>N</create_parent_folder>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+        <parameter>
+          <name>PROJECT_DIR</name>
+          <stream_name />
+          <value>${PROJECT_DIR}</value>
+        </parameter>
+      </parameters>
+    </entry>
+    <entry>
+      <name>Bronze Productos</name>
+      <description />
+      <type>TRANS</type>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>100</xloc>
+      <yloc>240</yloc>
+      <specification_method>filename</specification_method>
+      <filename>${PROJECT_DIR}/pentaho/bronze_productos.ktr</filename>
+      <transname />
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <loglevel>Basic</loglevel>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <remote_slave_server />
+      <create_parent_folder>N</create_parent_folder>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+        <parameter>
+          <name>PROJECT_DIR</name>
+          <stream_name />
+          <value>${PROJECT_DIR}</value>
+        </parameter>
+      </parameters>
+    </entry>
+    <entry>
+      <name>Validar SQL</name>
+      <description />
+      <type>SHELL</type>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>320</xloc>
+      <yloc>240</yloc>
+      <filename>${PYTHON_EXE}</filename>
+      <work_directory>${PROJECT_DIR}</work_directory>
+      <arg_from_previous>N</arg_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <set_logfile>N</set_logfile>
+      <loglevel>Basic</loglevel>
+      <insertScript>N</insertScript>
+      <logfile />
+      <logext>log</logext>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <script />
+      <wait_until_finished>Y</wait_until_finished>
+      <arguments>
+        <argument>${PROJECT_DIR}/src/pipeline.py</argument>
+        <argument>--stage</argument>
+        <argument>validate</argument>
+      </arguments>
+    </entry>
+    <entry>
+      <name>Silver Pandas</name>
+      <description />
+      <type>SHELL</type>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>540</xloc>
+      <yloc>240</yloc>
+      <filename>${PYTHON_EXE}</filename>
+      <work_directory>${PROJECT_DIR}</work_directory>
+      <arg_from_previous>N</arg_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <set_logfile>N</set_logfile>
+      <loglevel>Basic</loglevel>
+      <insertScript>N</insertScript>
+      <logfile />
+      <logext>log</logext>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <script />
+      <wait_until_finished>Y</wait_until_finished>
+      <arguments>
+        <argument>${PROJECT_DIR}/src/pipeline.py</argument>
+        <argument>--stage</argument>
+        <argument>silver</argument>
+      </arguments>
+    </entry>
+    <entry>
+      <name>Gold SQL</name>
+      <description />
+      <type>SHELL</type>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>760</xloc>
+      <yloc>240</yloc>
+      <filename>${PYTHON_EXE}</filename>
+      <work_directory>${PROJECT_DIR}</work_directory>
+      <arg_from_previous>N</arg_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <set_logfile>N</set_logfile>
+      <loglevel>Basic</loglevel>
+      <insertScript>N</insertScript>
+      <logfile />
+      <logext>log</logext>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <script />
+      <wait_until_finished>Y</wait_until_finished>
+      <arguments>
+        <argument>${PROJECT_DIR}/src/pipeline.py</argument>
+        <argument>--stage</argument>
+        <argument>gold</argument>
+      </arguments>
+    </entry>
+    <entry>
+      <name>Mineria</name>
+      <description />
+      <type>SHELL</type>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>100</xloc>
+      <yloc>380</yloc>
+      <filename>${PYTHON_EXE}</filename>
+      <work_directory>${PROJECT_DIR}</work_directory>
+      <arg_from_previous>N</arg_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <set_logfile>N</set_logfile>
+      <loglevel>Basic</loglevel>
+      <insertScript>N</insertScript>
+      <logfile />
+      <logext>log</logext>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <script />
+      <wait_until_finished>Y</wait_until_finished>
+      <arguments>
+        <argument>${PROJECT_DIR}/src/pipeline.py</argument>
+        <argument>--stage</argument>
+        <argument>mining</argument>
+      </arguments>
+    </entry>
+    <entry>
+      <name>Verificar</name>
+      <description />
+      <type>SHELL</type>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>320</xloc>
+      <yloc>380</yloc>
+      <filename>${PYTHON_EXE}</filename>
+      <work_directory>${PROJECT_DIR}</work_directory>
+      <arg_from_previous>N</arg_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <set_logfile>N</set_logfile>
+      <loglevel>Basic</loglevel>
+      <insertScript>N</insertScript>
+      <logfile />
+      <logext>log</logext>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <script />
+      <wait_until_finished>Y</wait_until_finished>
+      <arguments>
+        <argument>${PROJECT_DIR}/src/pipeline.py</argument>
+        <argument>--stage</argument>
+        <argument>verify</argument>
+      </arguments>
+    </entry>
+    <entry>
+      <name>Notificar local</name>
+      <description />
+      <type>SHELL</type>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>540</xloc>
+      <yloc>380</yloc>
+      <filename>${PYTHON_EXE}</filename>
+      <work_directory>${PROJECT_DIR}</work_directory>
+      <arg_from_previous>N</arg_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <set_logfile>N</set_logfile>
+      <loglevel>Basic</loglevel>
+      <insertScript>N</insertScript>
+      <logfile />
+      <logext>log</logext>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <script />
+      <wait_until_finished>Y</wait_until_finished>
+      <arguments>
+        <argument>${PROJECT_DIR}/src/pipeline.py</argument>
+        <argument>--stage</argument>
+        <argument>notify</argument>
+      </arguments>
+    </entry>
+  </entries>
+  <hops>
+    <hop>
+      <from>START</from>
+      <to>Extraer Excel</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Extraer Excel</from>
+      <to>Validar y preparar</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Validar y preparar</from>
+      <to>Bronze Retail</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Bronze Retail</from>
+      <to>Bronze Productos</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Bronze Productos</from>
+      <to>Validar SQL</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Validar SQL</from>
+      <to>Silver Pandas</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Silver Pandas</from>
+      <to>Gold SQL</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Gold SQL</from>
+      <to>Mineria</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Mineria</from>
+      <to>Verificar</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Verificar</from>
+      <to>Notificar local</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+  </hops>
+</job>

@@ -1,0 +1,15 @@
+{
+  "retail_filas": 541909,
+  "productos_filas": 299169,
+  "campos_obligatorios_vacios": {
+    "InvoiceNo": 0,
+    "StockCode": 0,
+    "InvoiceDate": 0,
+    "Country": 0
+  },
+  "conversiones_invalidas": {
+    "Quantity": 0,
+    "UnitPrice": 0,
+    "InvoiceDate": 0
+  }
+}

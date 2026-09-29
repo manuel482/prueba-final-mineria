@@ -1,0 +1,31 @@
+{
+  "filas": 299169,
+  "columnas": 18,
+  "nulos": {
+    "fecha": 0,
+    "nit": 0,
+    "cliente": 0,
+    "tipo_cliente": 0,
+    "sucursal": 0,
+    "cod_depto": 0,
+    "cod_municipio": 0,
+    "cod_vendedor": 0,
+    "cod_categoria": 0,
+    "categoria": 0,
+    "cod_linea": 0,
+    "linea": 0,
+    "cod_producto": 0,
+    "cantidad": 0,
+    "precio_unit": 0,
+    "costo_unit": 0,
+    "venta": 0,
+    "costos": 0
+  },
+  "duplicados_exactos": 6013,
+  "silver_filas": 299169,
+  "rechazos": 0,
+  "diferencias_venta_mayores_001": 0,
+  "diferencias_costos_mayores_001": 3,
+  "inicio": "2016-01-04 00:00:00",
+  "fin": "2020-12-28 00:00:00"
+}

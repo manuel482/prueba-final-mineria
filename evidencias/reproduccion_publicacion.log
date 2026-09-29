@@ -1,0 +1,23 @@
+2026-09-28 20:43:27,598 INFO Extrayendo Online Retail.xlsx
+2026-09-28 20:44:09,692 INFO Extrayendo productos_original.xlsx
+2026-09-28 20:44:54,767 INFO Extracción completada; valores del Excel conservados en CSV con fechas ISO
+2026-09-28 20:44:57,469 INFO bronze_retail: 541909 filas, 8 columnas
+2026-09-28 20:45:00,392 INFO bronze_productos: 299169 filas, 18 columnas
+2026-09-28 20:45:07,258 INFO Validación Bronze: {'retail_filas': 541909, 'productos_filas': 299169, 'campos_obligatorios_vacios': {'InvoiceNo': 0, 'StockCode': 0, 'InvoiceDate': 0, 'Country': 0}, 'conversiones_invalidas': {'Quantity': 0, 'UnitPrice': 0, 'InvoiceDate': 0}}
+2026-09-28 20:45:16,368 INFO silver_retail_rechazos: 5270 filas, 10 columnas
+2026-09-28 20:45:19,522 INFO silver_retail: 536639 filas, 12 columnas
+2026-09-28 20:45:29,999 INFO silver_productos_rechazos: 0 filas, 20 columnas
+2026-09-28 20:45:33,828 INFO silver_productos: 299169 filas, 22 columnas
+2026-09-28 20:45:42,555 INFO gold_retail: 536639 filas, 20 columnas
+2026-09-28 20:45:43,126 INFO dim_retail_producto: 4070 filas, 2 columnas
+2026-09-28 20:45:43,171 INFO dim_pais: 38 filas, 1 columnas
+2026-09-28 20:45:43,228 INFO dim_cliente: 4373 filas, 1 columnas
+2026-09-28 20:45:48,919 INFO gold_ventas_productos: 299169 filas, 24 columnas
+2026-09-28 20:45:50,900 INFO gold_ventas_productos: 299169 filas, 25 columnas
+2026-09-28 20:45:51,402 INFO dim_productos: 60 filas, 10 columnas
+2026-09-28 20:45:51,540 INFO dim_fecha: 4018 filas, 6 columnas
+2026-09-28 20:46:03,050 INFO gold_predicciones: 4612 filas, 12 columnas
+2026-09-28 20:46:03,279 INFO gold_features_ml: 14379 filas, 41 columnas
+2026-09-28 20:46:04,468 INFO gold_segmentos: 2889 filas, 5 columnas
+2026-09-28 20:46:07,910 INFO Verificación terminada: integridad y conciliación correctas
+2026-09-28 20:46:08,156 INFO NOTIFICACIÓN LOCAL: pipeline completado. No se envían mensajes externos.

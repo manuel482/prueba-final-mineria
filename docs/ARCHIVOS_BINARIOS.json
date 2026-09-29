@@ -1,0 +1,66 @@
+{
+  "data/Online Retail.xlsx": {
+    "member": "ProyectoKDD/data/Online Retail.xlsx",
+    "sha256": "43465a06f2ccf7c8b5bd2892bc7defb52f97487934fe93b16ae4c3936424676d"
+  },
+  "data/productos_original.xlsx": {
+    "member": "ProyectoKDD/data/productos_original.xlsx",
+    "sha256": "59a050dfe0c28543f6e114e23abe617a25175e0045fc154732300f346d8adc82"
+  },
+  "evidencias/clasificacion_panel.png": {
+    "member": "ProyectoKDD/evidencias/clasificacion_panel.png",
+    "sha256": "0656bbcb423938e5097d0ad019b5de614dc86e6dd65343770f6fbb21a084572a"
+  },
+  "evidencias/clusters.png": {
+    "member": "ProyectoKDD/evidencias/clusters.png",
+    "sha256": "fa6b32ccb5284ca9dff308f9fa678edf2d07cacd44189be312a7dc1720b3a984"
+  },
+  "evidencias/flujo_etl.png": {
+    "member": "ProyectoKDD/evidencias/flujo_etl.png",
+    "sha256": "c7ca66ec7b632d9a14d91a97dccba43764aba79d66b0046bec3fa9296d07c250"
+  },
+  "evidencias/matriz_confusion.png": {
+    "member": "ProyectoKDD/evidencias/matriz_confusion.png",
+    "sha256": "0e2828e90abea58739e65a4ac7baeaad40f591645783aff5317357aaefd76857"
+  },
+  "evidencias/muestra_dataset.png": {
+    "member": "ProyectoKDD/evidencias/muestra_dataset.png",
+    "sha256": "9be1d026680e2fd41d2a35b71bc5262cf7eefb883371f380d6fcd411eba505d8"
+  },
+  "evidencias/productos_eda.png": {
+    "member": "ProyectoKDD/evidencias/productos_eda.png",
+    "sha256": "01a7e283f3829d00a1643fdb49d703aa175f90f19eafe9224f1a4777c1aa08ff"
+  },
+  "evidencias/regresion.png": {
+    "member": "ProyectoKDD/evidencias/regresion.png",
+    "sha256": "6721b270335b949f9ace27e4d53756facbfb1162c76b20389128a6f7461439e1"
+  },
+  "evidencias/retail_distribucion.png": {
+    "member": "ProyectoKDD/evidencias/retail_distribucion.png",
+    "sha256": "1a0e5869cd4416a4ba3cfb5dace9a8fa4f29976b0f79538db9796f4ca2542c19"
+  },
+  "evidencias/retail_paises.png": {
+    "member": "ProyectoKDD/evidencias/retail_paises.png",
+    "sha256": "8ff4fe2c0308280c051e8f113d86712a0daf91da777f0a7205e2782dea36ed70"
+  },
+  "evidencias/retail_tendencia.png": {
+    "member": "ProyectoKDD/evidencias/retail_tendencia.png",
+    "sha256": "a55b4de40dceed71df9ddf1c56276952f8d3f76a18a8c92f1378bc1e2026a775"
+  },
+  "evidencias/roc.png": {
+    "member": "ProyectoKDD/evidencias/roc.png",
+    "sha256": "0c2724a50b010af9c0fb2b27a267344e3cdfa5fc1a9db8b4624c04938fb0ad22"
+  },
+  "modelos/clasificacion.joblib": {
+    "member": "ProyectoKDD/modelos/clasificacion.joblib",
+    "sha256": "cb5b90f8932f605bbf53ab89345a2d70789073e03d29438321e46fefdfad31e8"
+  },
+  "modelos/clustering.joblib": {
+    "member": "ProyectoKDD/modelos/clustering.joblib",
+    "sha256": "39c29a91f031b15fb767134a822739af014e1d5a68b99414d95eeb39f961695a"
+  },
+  "modelos/regresion.joblib": {
+    "member": "ProyectoKDD/modelos/regresion.joblib",
+    "sha256": "8dd571b87ffa25e284024002b16dff956e1463a327412c74b5a85c66744a69db"
+  }
+}

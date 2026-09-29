@@ -1,0 +1,337 @@
+{
+  "resultado": "OK",
+  "controles": 65,
+  "errores": 0,
+  "alcance": "fuentes, base, KPI, evidencias y estructura",
+  "detalle": [
+    {
+      "control": "fuente Online Retail.xlsx",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "fuente productos_original.xlsx",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "fuente retail_original.csv",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "fuente productos_original.csv",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "base SQLite",
+      "resultado": "OK",
+      "detalle": "Si falta, ejecuta src/pipeline.py --stage all"
+    },
+    {
+      "control": "integridad SQLite",
+      "resultado": "OK",
+      "detalle": "ok"
+    },
+    {
+      "control": "tablas analíticas",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "volumen Bronze",
+      "resultado": "OK",
+      "detalle": "{'bronze_retail': 541909, 'bronze_productos': 299169, 'silver_retail': 536639, 'silver_retail_rechazos': 5270, 'silver_productos': 299169, 'silver_productos_rechazos': 0, 'gold_retail': 536639, 'gold_ventas_productos': 299169, 'dim_productos': 60, 'dim_retail_producto': 4070, 'dim_pais': 38, 'dim_fecha': 4018, 'gold_predicciones': 4612, 'gold_segmentos': 2889}"
+    },
+    {
+      "control": "conciliación Retail",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "conciliación Productos",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "hechos Gold",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "relación gold_ventas_productos → dim_productos",
+      "resultado": "OK",
+      "detalle": "duplicados=0; huérfanos=0"
+    },
+    {
+      "control": "relación gold_retail → dim_retail_producto",
+      "resultado": "OK",
+      "detalle": "duplicados=0; huérfanos=0"
+    },
+    {
+      "control": "relación gold_retail → dim_pais",
+      "resultado": "OK",
+      "detalle": "duplicados=0; huérfanos=0"
+    },
+    {
+      "control": "KPI retail.venta_neta_gbp",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "KPI retail.venta_bruta_gbp",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "KPI retail.devoluciones_gbp",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "KPI productos.venta",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "KPI productos.costos",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "KPI productos.utilidad",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "evidencia metricas.json",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "evidencia kpis.json",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "evidencia verificacion.json",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "evidencia estado_ejecucion.json",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "catálogo de fuentes",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "SHA-256 fuente Online Retail.xlsx",
+      "resultado": "OK",
+      "detalle": "43465a06f2ccf7c8b5bd2892bc7defb52f97487934fe93b16ae4c3936424676d"
+    },
+    {
+      "control": "SHA-256 fuente productos_original.xlsx",
+      "resultado": "OK",
+      "detalle": "59a050dfe0c28543f6e114e23abe617a25175e0045fc154732300f346d8adc82"
+    },
+    {
+      "control": "XML pentaho/proyecto_completo.kjb",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "XML pentaho/bronze_retail.ktr",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "XML pentaho/bronze_productos.ktr",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "estructura Power BI",
+      "resultado": "OK",
+      "detalle": "34"
+    },
+    {
+      "control": "JSON powerbi/ProyectoKDD.Report/definition/pages/geografia/page.json",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "JSON powerbi/ProyectoKDD.Report/definition/pages/geografia/visuals/mapa/visual.json",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "JSON powerbi/ProyectoKDD.Report/definition/pages/geografia/visuals/periodo/visual.json",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "JSON powerbi/ProyectoKDD.Report/definition/pages/pages.json",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "JSON powerbi/ProyectoKDD.Report/definition/pages/productos/page.json",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "JSON powerbi/ProyectoKDD.Report/definition/pages/productos/visuals/barras/visual.json",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "JSON powerbi/ProyectoKDD.Report/definition/pages/productos/visuals/card0/visual.json",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "JSON powerbi/ProyectoKDD.Report/definition/pages/productos/visuals/card1/visual.json",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "JSON powerbi/ProyectoKDD.Report/definition/pages/productos/visuals/card2/visual.json",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "JSON powerbi/ProyectoKDD.Report/definition/pages/productos/visuals/fecha/visual.json",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "JSON powerbi/ProyectoKDD.Report/definition/pages/productos/visuals/filtro_categoria/visual.json",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "JSON powerbi/ProyectoKDD.Report/definition/pages/productos/visuals/matriz/visual.json",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "JSON powerbi/ProyectoKDD.Report/definition/pages/productos/visuals/sucursal/visual.json",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "JSON powerbi/ProyectoKDD.Report/definition/pages/productos/visuals/tendencia/visual.json",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "JSON powerbi/ProyectoKDD.Report/definition/pages/retail/page.json",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "JSON powerbi/ProyectoKDD.Report/definition/pages/retail/visuals/barras/visual.json",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "JSON powerbi/ProyectoKDD.Report/definition/pages/retail/visuals/card0/visual.json",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "JSON powerbi/ProyectoKDD.Report/definition/pages/retail/visuals/card1/visual.json",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "JSON powerbi/ProyectoKDD.Report/definition/pages/retail/visuals/card2/visual.json",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "JSON powerbi/ProyectoKDD.Report/definition/pages/retail/visuals/distribucion/visual.json",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "JSON powerbi/ProyectoKDD.Report/definition/pages/retail/visuals/fecha/visual.json",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "JSON powerbi/ProyectoKDD.Report/definition/pages/retail/visuals/filtro_categoria/visual.json",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "JSON powerbi/ProyectoKDD.Report/definition/pages/retail/visuals/matriz/visual.json",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "JSON powerbi/ProyectoKDD.Report/definition/pages/retail/visuals/tendencia/visual.json",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "JSON powerbi/ProyectoKDD.Report/definition/pages/segmentacion/page.json",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "JSON powerbi/ProyectoKDD.Report/definition/pages/segmentacion/visuals/clientes/visual.json",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "JSON powerbi/ProyectoKDD.Report/definition/pages/segmentacion/visuals/filtro/visual.json",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "JSON powerbi/ProyectoKDD.Report/definition/pages/segmentacion/visuals/tabla/visual.json",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "JSON powerbi/ProyectoKDD.Report/definition/report.json",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "JSON powerbi/ProyectoKDD.Report/definition/version.json",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "JSON powerbi/ProyectoKDD.Report/definition.pbir",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "JSON powerbi/ProyectoKDD.SemanticModel/definition.pbism",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "JSON powerbi/ProyectoKDD.SemanticModel/model.bim",
+      "resultado": "OK",
+      "detalle": ""
+    },
+    {
+      "control": "JSON powerbi/ProyectoKDD.pbip",
+      "resultado": "OK",
+      "detalle": ""
+    }
+  ],
+  "pendiente_nativo": [
+    "ejecución real Pentaho",
+    "PBIX y capturas Power BI Desktop"
+  ]
+}

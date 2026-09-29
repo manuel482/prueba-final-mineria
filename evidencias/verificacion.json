@@ -1,0 +1,22 @@
+{
+  "integridad_sqlite": "ok",
+  "conteos": {
+    "bronze_retail": 541909,
+    "bronze_productos": 299169,
+    "silver_retail_rechazos": 5270,
+    "silver_retail": 536639,
+    "silver_productos_rechazos": 0,
+    "silver_productos": 299169,
+    "gold_retail": 536639,
+    "dim_retail_producto": 4070,
+    "dim_pais": 38,
+    "dim_cliente": 4373,
+    "gold_ventas_productos": 299169,
+    "dim_productos": 60,
+    "dim_fecha": 4018,
+    "gold_predicciones": 4612,
+    "gold_features_ml": 14379,
+    "gold_segmentos": 2889
+  },
+  "relaciones_sin_huerfanos": true
+}

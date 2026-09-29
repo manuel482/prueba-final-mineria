@@ -1,0 +1,28 @@
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+
+# Salidas grandes que se regeneran desde los Excel originales.
+/data/*_original.csv
+/data/*.sqlite
+/data/*.sqlite-*
+/data/.proyecto_kdd.sqlite*
+/ProyectoKDD_Entrega.zip
+*.tmp
+
+# Configuración y resultados propios de cada equipo.
+/pentaho/ejecutar_programado.cmd
+/evidencias/comprobacion_local.json
+/evidencias/pentaho_real.log
+/powerbi/**/.pbi/
+/powerbi/**/*.pbix
+
+# Se preparan desde el paquete de fuentes verificado.
+/data/*.xlsx
+/data/snapshots_modelos.csv
+/evidencias/*.png
+/modelos/*.joblib

@@ -1,0 +1,23 @@
+// Crear en Retail. El PBIP contiene estas medidas.
+Venta Neta GBP = SUM(Retail[importe])
+Venta Bruta GBP = SUM(Retail[venta_bruta])
+Devoluciones GBP = SUM(Retail[devolucion])
+Tasa Devoluciones = DIVIDE([Devoluciones GBP], [Venta Bruta GBP])
+Facturas = DISTINCTCOUNT(Retail[InvoiceNo])
+Clientes Identificados = CALCULATE(DISTINCTCOUNT(Retail[customer_key]), Retail[customer_key] <> "DESCONOCIDO")
+Venta Mes Anterior GBP = CALCULATE([Venta Neta GBP], DATEADD(Fecha[fecha], -1, MONTH))
+Crecimiento Mensual GBP = DIVIDE([Venta Neta GBP]-[Venta Mes Anterior GBP], [Venta Mes Anterior GBP])
+Acumulado GBP = TOTALYTD([Venta Neta GBP], Fecha[fecha])
+// Crear en Ventas. Moneda no especificada en el Excel: no sumar con GBP.
+Ventas Productos = SUM(Ventas[venta])
+Costos Productos = SUM(Ventas[costos])
+Utilidad Productos = [Ventas Productos]-[Costos Productos]
+Margen Productos = DIVIDE([Utilidad Productos], [Ventas Productos])
+Unidades Productos = SUM(Ventas[cantidad])
+Precio Medio Ponderado = DIVIDE([Ventas Productos], [Unidades Productos])
+Ventas Mes Anterior = CALCULATE([Ventas Productos], DATEADD(Fecha[fecha], -1, MONTH))
+Crecimiento Mensual Productos = DIVIDE([Ventas Productos]-[Ventas Mes Anterior], [Ventas Mes Anterior])
+Acumulado Productos = TOTALYTD([Ventas Productos], Fecha[fecha])
+Ventas Lactea = CALCULATE([Ventas Productos], KEEPFILTERS(Productos[categoria] = "LACTEA"))
+// Sustituir la segunda categoría por una existente si se desea otra selección.
+Ventas Categorias Seleccionadas = CALCULATE([Ventas Productos], KEEPFILTERS(Productos[categoria] IN {"LACTEA", "CARNICA"}))
