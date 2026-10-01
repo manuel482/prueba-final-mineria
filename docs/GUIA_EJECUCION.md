@@ -13,6 +13,19 @@ Prepara el entorno según [instalación](GUIA_INSTALACION.md). Todos los comando
 
 Consulta `evidencias/pipeline.log`. `estado_ejecucion.json` registra `EN_PROCESO`, `ERROR` u `OK`. La notificación es un archivo local; no envía correos ni mensajes.
 
+## Flujo de Persona D · Manuel
+
+Para ejecutar la parte de soporte e integración de una sola vez:
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install -r requirements-notebook.txt
+.\.venv\Scripts\python.exe src\persona_d_entrega.py
+```
+
+Este comando ejecuta y verifica el pipeline, genera evidencias del dataset original y de consultas SQL, ejecuta `notebooks/Proyecto_KDD.ipynb` con `nbconvert --execute --inplace` para conservar las salidas visibles y escribe `evidencias/persona_d_resumen.json` con el tamaño y SHA-256 de `data/proyecto_kdd.sqlite`.
+
+La base SQLite se comparte por Drive con los otros tres integrantes; no se publica en GitHub porque ronda los 420 MB. Si la base ya fue generada y validada, usa `--sin-pipeline`.
+
 ## Etapas individuales
 
 Para diagnóstico puedes usar `--stage extract`, `bronze`, `validate`, `silver`, `gold`, `mining`, `verify` o `notify`. Cada etapa necesita las salidas de las anteriores:
