@@ -11,8 +11,7 @@
 
 Pipeline académico de analítica con arquitectura Medallion (Bronze, Silver y Gold), clasificación, regresión y segmentación de clientes. Fuentes: **541 909 registros de Online Retail** y **299 169 registros de productos**.
 
-Esta actualización parte de **ProyectoKDD_Entrega.zip, versión 2 del 27 de septiembre de 2026**. El nombre anterior `manuel482/Aplicacion-de-prueba-supermercado` redirige a este repositorio.
-
+Esta actualización parte de **ProyectoKDD_Entrega.zip, versión 2 del 27 de septiembre de 2026**. 
 ## Descargar y comenzar
 
 Pulsa **Code → Download ZIP**, extrae una sola vez y abre una terminal en la carpeta que contiene este `README.md`, `requirements.txt` y `src`. También puedes clonar el repositorio:
