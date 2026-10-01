@@ -134,9 +134,9 @@ def main():
 
     errors = sum(x["resultado"] != "OK" for x in checks)
     summary = {"resultado": "OK" if not errors else "ERROR", "controles": len(checks), "errores": errors,
-               "alcance": "fuentes y estructura; sin comprobar ejecución" if args.solo_fuentes else "fuentes, base, KPI, evidencias y estructura",
+               "alcance": "fuentes y estructura; validación de ejecución fuera de este modo" if args.solo_fuentes else "fuentes, base, KPI, evidencias y estructura",
                "detalle": checks,
-               "pendiente_nativo": ["ejecución real Pentaho", "PBIX y capturas Power BI Desktop"]}
+               "validacion_nativa_requerida": ["ejecución real Pentaho", "PBIX y capturas Power BI Desktop"]}
     if args.json:
         path = args.json if args.json.is_absolute() else ROOT / args.json
         path.parent.mkdir(parents=True, exist_ok=True)
