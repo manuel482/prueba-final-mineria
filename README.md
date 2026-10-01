@@ -1,6 +1,13 @@
 # Proyecto KDD · Pandas, SQL, Pentaho y Power BI
 
-**Autor:** Manuel Mora Matías.
+## Integrantes
+
+- **Manuel Mora** — 100065865
+- **Stephany Ángeles** — 100063069
+- **Erick Reynoso Torres** — 100068266
+- **Enmanuel Jiménez** — 100066650
+
+**Persona D · soporte e integración:** Manuel Mora.
 
 Pipeline académico de analítica con arquitectura Medallion (Bronze, Silver y Gold), clasificación, regresión y segmentación de clientes. Fuentes: **541 909 registros de Online Retail** y **299 169 registros de productos**.
 
@@ -39,6 +46,8 @@ py -3.12 -m venv .venv
 | [Comprobación](docs/GUIA_COMPROBACION.md) | Revisar conteos, KPI, modelos, hashes y errores |
 | [Estado y evidencias](docs/ESTADO_Y_EVIDENCIAS.md) | Qué está validado y qué requiere aplicaciones nativas |
 | [Cambios de esta publicación](docs/ACTUALIZACION.md) | Procedencia del ZIP y correcciones |
+| [Persona D · Manuel](docs/PERSONA_D_MANUEL.md) | Pipeline común, notebook, SQL, capturas y soporte de instalación |
+| [Integración final](docs/INTEGRACION_FINAL.md) | Integrantes, sección empresarial y consolidación del informe |
 | [Informe Word](Informe_Proyecto_KDD.docx) | Metodología, resultados e interpretación |
 
 ## Organización
@@ -55,7 +64,18 @@ py -3.12 -m venv .venv
 | `evidencias/` | Métricas, perfiles, gráficos y registros de las ejecuciones |
 | `docs/` | Guías y trazabilidad |
 
-**Estado:** Python y SQLite se reproducen automáticamente. Pentaho y Power BI tienen comprobaciones de estructura, pero siguen pendientes la ejecución real en Spoon/Kitchen, la apertura en Desktop, el PBIX y las capturas nativas. Consulta la matriz de evidencias antes de presentar la entrega como completa.
+**Estado:** Python y SQLite se reproducen automáticamente. La integración de Persona D se automatiza con `src/persona_d_entrega.py`, que ejecuta/verifica el pipeline, conserva las salidas del notebook y genera evidencias de dataset y SQL. Pentaho y Power BI conservan comprobaciones de estructura; la validación nativa se realiza en Spoon/Kitchen y Power BI Desktop antes de la entrega.
+
+### Persona D · Manuel
+
+Después de instalar las dependencias del notebook, Manuel puede ejecutar toda su parte con:
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install -r requirements-notebook.txt
+.\.venv\Scripts\python.exe src\persona_d_entrega.py
+```
+
+El script registra tamaño y SHA-256 de `data/proyecto_kdd.sqlite` para compartir exactamente esa base por Drive con A, B y C, ejecuta `notebooks/Proyecto_KDD.ipynb` en el mismo archivo y genera las evidencias descritas en [Persona D · Manuel](docs/PERSONA_D_MANUEL.md).
 
 ## Fuentes
 
