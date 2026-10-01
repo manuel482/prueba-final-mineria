@@ -66,7 +66,7 @@ python3.12 -m venv .venv
 
 En algunas distribuciones Linux hay que instalar previamente el componente `venv` de Python. Los scripts Windows de Pentaho y su programación de tareas no se ejecutan en Linux/macOS. La preparación de Power BI Desktop descrita más abajo corresponde a Windows.
 
-## 6. Notebook opcional
+## 6. Notebook y ejecución de Persona D
 
 Después de crear y verificar la base:
 
@@ -75,9 +75,17 @@ Después de crear y verificar la base:
 .\.venv\Scripts\python.exe -m jupyter lab notebooks\Proyecto_KDD.ipynb
 ```
 
-Selecciona el kernel de este entorno y ejecuta las celdas en orden. El notebook busca la raíz del proyecto desde su carpeta y abre SQLite en modo solo lectura. Se distribuye sin salidas guardadas para ejecutarlo en orden; las métricas y figuras de referencia están en `evidencias/`.
+Selecciona el kernel de este entorno y ejecuta las celdas en orden. El notebook busca la raíz del proyecto desde su carpeta y abre SQLite en modo solo lectura.
 
-## 7. Pentaho: configuración y prueba nativa pendiente
+Para la integración de Manuel, la vía recomendada es ejecutar automáticamente el notebook y guardar las salidas visibles en el mismo archivo:
+
+```powershell
+.\.venv\Scripts\python.exe src\persona_d_entrega.py --sin-pipeline
+```
+
+Si todavía no se ha generado la base común, elimina `--sin-pipeline`. El script también crea una captura del dataset original, una evidencia visual y textual de consultas SQL y un resumen con SHA-256/tamaño de la base que debe compartirse por Drive con el resto del equipo.
+
+## 7. Pentaho: configuración y prueba nativa
 
 Instala Pentaho Data Integration con el Java que exige tu distribución. Localiza `Spoon.bat` y `Kitchen.bat`. Añade un controlador JDBC SQLite compatible que exponga `org.sqlite.JDBC`, junto a las dependencias exigidas por ese controlador, y reinicia Spoon.
 
@@ -96,7 +104,7 @@ $LASTEXITCODE
 
 Exige salida 0 y revisa `evidencias/pentaho_real.log`. Después de una ejecución manual correcta, `pentaho/programar_windows.ps1` permite registrar una tarea diaria a las 08:00 para tu usuario Windows. Ejecuta ese script solo si deseas programarla; verifica una ejecución real en el Programador de tareas. El repositorio no instala ninguna tarea por sí mismo.
 
-## 8. Power BI Desktop: configuración y prueba nativa pendiente
+## 8. Power BI Desktop: configuración y prueba nativa
 
 1. Instala Power BI Desktop en Windows y un controlador SQLite ODBC de **64 bits**.
 2. Crea el DSN **ProyectoKDD** en **Orígenes de datos ODBC (64 bits)**, apuntando a la ruta absoluta de `data\proyecto_kdd.sqlite` ya generada y verificada.
